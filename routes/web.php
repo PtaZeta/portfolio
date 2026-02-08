@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+// Ruta sin middleware de sesión para la página estática
+Route::middleware([])->get('/', function () {
     return view('welcome');
 });

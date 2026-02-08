@@ -36,6 +36,9 @@ RUN composer install --optimize-autoloader --no-interaction --no-scripts --no-de
 RUN mkdir -p storage/logs storage/framework/cache storage/framework/views \
     && chmod -R 775 storage bootstrap/cache
 
+# Crear SQLite vacío por si alguna configuración lo requiere
+RUN mkdir -p database && touch database/database.sqlite
+
 # Generar clave de aplicación si no existe
 RUN if [ ! -f .env ]; then cp .env.example .env && php artisan key:generate; fi
 
@@ -43,5 +46,5 @@ RUN if [ ! -f .env ]; then cp .env.example .env && php artisan key:generate; fi
 EXPOSE 8000
 
 # Comando de inicio
-CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
+CMD ["/bin/sh", "-c", "php artisan migrate --force && php -S 0.0.0.0:8000 -t public"]
 

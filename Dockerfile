@@ -25,27 +25,23 @@ RUN echo "opcache.enable=1" >> /usr/local/etc/php/conf.d/opcache.ini \
 # Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Instalar Node.js 20.x
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs \
-    && rm -rf /var/lib/apt/lists/*
-
 # Copiar archivos del proyecto
 WORKDIR /app
 COPY . .
 
 # Instalar dependencias PHP
-RUN composer install --optimize-autoloader --no-interaction --no-scripts
+RUN composer install --optimize-autoloader --no-interaction --no-scripts --no-dev
 
-# Instalar dependencias Node.js
-RUN npm install
-
-# Generar assets con Vite
-RUN npm run build
-
-# Permisos
-RUN mkdir -p storage bootstrap/cache \
+# Crear directorios de logs y cache
+RUN mkdir -p storage/logs storage/framework/cache storage/framework/views \
     && chmod -R 775 storage bootstrap/cache
+
+# Generar clave de aplicación si no existe
+RUN if [ ! -f .env ]; then cp .env.example .env && php artisan key:generate; fi
+
+# Exponer puerto
+EXPOSE 8000
 
 # Comando de inicio
 CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
+

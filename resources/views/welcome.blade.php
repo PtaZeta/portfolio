@@ -654,7 +654,7 @@
                 <h1>José Manuel Rodríguez Lorenzo</h1>
                 <p class="subtitle">Desarrollador Web</p>
                 <p class="bio">
-                    Soy un chavel de 21 años buscando mi primer trabajo como informático. Bueno trabajando en equipo y en solitario, puntual y dispuesto a diario todo. 
+                    Soy un chaval de 21 años con experiencia laboral y vocacion por la informatica. Bueno trabajando en equipo y en solitario, puntual y dispuesto a darlo todo a diario. 
                     Con conocimiento avanzado en frameworks PHP y desarrollo web, transformo ideas en soluciones digitales de impacto.
                 </p>
             </header>
@@ -1147,7 +1147,7 @@
                             <div class="cv-category-title">Experience</div>
                             <div class="cv-item">
                                 <div class="cv-item-title">Waiter</div>
-                                <div class="cv-item-subtitle">Heladería Manolín (June 2023 - September 2023 | June 2024 - September 2024)</div>
+                                <div class="cv-item-subtitle">Heladería Manolín (June 2023 - September 2023 | June 2024 - September 2024 | June 2025 - September 2025)</div>
                                 <div class="cv-item-desc">Mainly bar service, reception, restocking, etc. Experience in customer service and teamwork.</div>
                             </div>
                             <div class="cv-item">
